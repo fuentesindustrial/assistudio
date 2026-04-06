@@ -6,6 +6,13 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "3000"],
       "port": 3000
+    },
+    {
+      "name": "Assistudio React (Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "5173"],
+      "cwd": "${workspaceFolder}/assistudio-react",
+      "port": 5173
     }
   ]
 }
