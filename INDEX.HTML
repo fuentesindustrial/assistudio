@@ -1,66 +1,280 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitio en construcción</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistudio — Próximamente</title>
+  <meta name="description" content="Assistudio Beauty Studio. Próximamente una nueva experiencia beauty online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f8f3ef;
+      --zinc-900: #18181b;
+      --zinc-700: #3f3f46;
+      --zinc-500: #71717a;
+      --zinc-300: #d4d4d8;
+      --zinc-100: #f4f4f5;
+      --white: #ffffff;
+      --accent: #f1ddd0;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--zinc-900);
+      min-height: 100svh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Fondo decorativo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(241,221,208,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(241,221,208,0.3) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 560px;
       text-align: center;
-      padding: 20px;
+      animation: fadeUp 1s ease both;
     }
-    .box {
-      max-width: 700px;
-      background: rgba(255,255,255,0.08);
-      padding: 50px 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.1rem;
-      opacity: 0.95;
-      line-height: 1.6;
-    }
-    .btn {
+
+    /* Logo / marca */
+    .logo {
       display: inline-block;
-      margin-top: 25px;
-      padding: 14px 24px;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      border-radius: 12px;
-      font-weight: bold;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--zinc-500);
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s ease both;
     }
-    .social {
-      margin-top: 20px;
-      font-size: 0.95rem;
-      opacity: 0.9;
+
+    /* Título principal */
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.2rem, 10vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--zinc-900);
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.9s ease 0.1s both;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--zinc-700);
+    }
+
+    /* Línea decorativa */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--zinc-300);
+      margin: 2rem auto;
+      animation: expand 1s ease 0.3s both;
+    }
+
+    /* Subtítulo */
+    .subtitle {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--zinc-500);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      max-width: 380px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    /* Badge "Próximamente" */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      border: 1px solid var(--zinc-300);
+      border-radius: 100px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--zinc-700);
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease 0.05s both;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--zinc-900);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* Botones */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      animation: fadeUp 0.9s ease 0.35s both;
+    }
+
+    @media (min-width: 420px) {
+      .buttons { flex-direction: row; justify-content: center; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      border-radius: 100px;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    }
+
+    .btn-whatsapp {
+      background: var(--zinc-900);
+      color: var(--white);
+    }
+
+    .btn-instagram {
+      background: var(--white);
+      color: var(--zinc-900);
+      border: 1px solid var(--zinc-300);
+    }
+
+    .btn-instagram:hover {
+      border-color: var(--zinc-500);
+    }
+
+    /* Íconos SVG */
+    .icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.7rem;
+      color: var(--zinc-500);
+      letter-spacing: 0.08em;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+
+    /* Animaciones */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes expand {
+      from { width: 0; opacity: 0; }
+      to   { width: 40px; opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>🚧 Página en construcción</h1>
-    <p>Estamos trabajando para lanzar nuestro nuevo sitio web muy pronto.</p>
-    <p>Si necesitas contactarnos, escríbenos directamente.</p>
-    <a class="btn" href="https://wa.me/56942212182" target="_blank">Contáctanos por WhatsApp</a>
-    <div class="social">
-      Instagram: @assistudio
-      
+  <div class="wrapper">
+
+    <p class="logo">Assistudio &nbsp;·&nbsp; Beauty Studio</p>
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Próximamente
     </div>
+
+    <h1 class="headline">
+      Belleza<br /><em>que se nota.</em>
+    </h1>
+
+    <div class="divider"></div>
+
+    <p class="subtitle">
+      Estamos preparando algo especial para ti.<br />
+      Mientras tanto, escríbenos y agenda tu cita.
+    </p>
+
+    <div class="buttons">
+      <!-- WhatsApp -->
+      <a
+        href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora."
+        target="_blank"
+        rel="noreferrer"
+        class="btn btn-whatsapp"
+      >
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.527 5.854L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.727.978.995-3.632-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+        </svg>
+        Escríbenos por WhatsApp
+      </a>
+
+      <!-- Instagram -->
+      <a
+        href="https://www.instagram.com/assistudio"
+        target="_blank"
+        rel="noreferrer"
+        class="btn btn-instagram"
+      >
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Ver Instagram
+      </a>
+    </div>
+
+    <p class="footer">@assistudio &nbsp;·&nbsp; Beauty Studio Premium</p>
+
   </div>
 </body>
 </html>
