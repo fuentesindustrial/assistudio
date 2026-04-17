@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistudio — Beauty Studio Premium</title>
+  <meta name="description" content="Assistudio by Pamela Assis. Estilista Profesional en Paine. Babylights, Balayage, Color, Cortes, Olaplex y Tratamientos capilares." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f8f3ef;
+      --accent: #f1ddd0;
+      --zinc-900: #18181b;
+      --zinc-800: #27272a;
+      --zinc-700: #3f3f46;
+      --zinc-600: #52525b;
+      --zinc-500: #71717a;
+      --zinc-400: #a1a1aa;
+      --zinc-300: #d4d4d8;
+      --zinc-200: #e4e4e7;
+      --zinc-100: #f4f4f5;
+      --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--zinc-900); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* FADE UP ANIMATION */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAVBAR */
+    header { position: fixed; top: 0; z-index: 40; width: 100%; border-bottom: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; }
+    .nav-logo { font-size: 1.1rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+    .nav-links { display: none; gap: 2rem; font-size: .875rem; color: var(--zinc-700); }
+    .nav-links a:hover { color: var(--zinc-900); }
+    .nav-cta { display: none; background: var(--zinc-900); color: white; border-radius: 100px; padding: .625rem 1.25rem; font-size: .875rem; transition: background .2s; }
+    .nav-cta:hover { background: var(--zinc-800); }
+    @media(min-width:768px) { .nav-links { display: flex; } .nav-cta { display: inline-flex; } }
+
+    /* FLOATING WA */
+    .fab { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50; display: inline-flex; align-items: center; gap: .5rem; background: var(--zinc-900); color: white; border-radius: 100px; padding: .75rem 1.25rem; font-size: .875rem; font-weight: 500; box-shadow: 0 25px 50px -12px rgba(0,0,0,.25); transition: transform .2s; }
+    .fab:hover { transform: scale(1.05); }
+
+    /* HERO */
+    #inicio { position: relative; min-height: 100svh; overflow: hidden; padding-top: 6rem; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.30) 60%, var(--cream)); }
+    .hero-content { position: relative; max-width: 1280px; margin: 0 auto; display: flex; align-items: center; min-height: 92svh; padding: 0 1.5rem; }
+    .hero-badge { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1); border-radius: 100px; padding: .5rem 1rem; font-size: .7rem; text-transform: uppercase; letter-spacing: .28em; color: white; backdrop-filter: blur(8px); margin-bottom: 1rem; }
+    .hero-h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.05; color: white; }
+    .hero-h1 span { display: block; color: var(--accent); }
+    .hero-p { margin-top: 1.5rem; max-width: 42rem; font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,.9); }
+    .hero-p strong { font-weight: 500; }
+
+    /* CTA BUTTONS */
+    .cta-buttons { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    @media(min-width:640px) { .cta-buttons { flex-direction: row; } .cta-buttons.center { justify-content: center; } }
+    .btn-wa { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: var(--zinc-900); color: white; border-radius: 100px; padding: .75rem 1.5rem; font-size: .875rem; font-weight: 500; outline: 2px solid rgba(255,255,255,.3); outline-offset: 2px; box-shadow: 0 10px 15px -3px rgba(0,0,0,.1); transition: transform .2s, background .2s; }
+    .btn-wa:hover { transform: scale(1.02); background: var(--zinc-800); }
+    .btn-ig { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border: 1px solid var(--zinc-300); background: rgba(255,255,255,.7); backdrop-filter: blur(8px); border-radius: 100px; padding: .75rem 1.5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); outline: 2px solid var(--zinc-200); outline-offset: 2px; transition: transform .2s, border-color .2s; }
+    .btn-ig:hover { transform: scale(1.02); border-color: var(--zinc-400); }
+
+    /* SECTIONS */
+    section { padding: 6rem 1.5rem; }
+    @media(min-width:768px) { section { padding: 8rem 1.5rem; } }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .eyebrow { font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--zinc-500); margin-bottom: .75rem; }
+    .section-title { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 600; letter-spacing: -.02em; color: var(--zinc-900); }
+    .section-sub { margin-top: 1rem; font-size: 1rem; color: var(--zinc-600); line-height: 1.7; }
+    .bg-white60 { background: rgba(255,255,255,.6); }
+
+    /* ABOUT */
+    .about-grid { display: grid; gap: 3.5rem; align-items: center; }
+    @media(min-width:768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap::before { content:''; position:absolute; inset:-1rem; border-radius:2rem; background:rgba(255,255,255,.5); filter:blur(2rem); }
+    .about-img { position: relative; height: 520px; width: 100%; object-fit: cover; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.2); }
+    .about-text { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-text p { font-size: 1rem; line-height: 1.75; color: var(--zinc-700); }
+    .about-text p strong { color: var(--zinc-900); font-weight: 600; }
+    .about-text .tagline { font-size: .9rem; font-weight: 500; color: var(--zinc-800); font-style: italic; }
+
+    /* SERVICES */
+    .services-grid { margin-top: 3.5rem; display: grid; gap: 2rem; }
+    @media(min-width:768px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media(min-width:1280px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+    .service-card { overflow: hidden; border-radius: 2rem; border: 1px solid rgba(255,255,255,.5); background: white; box-shadow: 0 20px 25px -5px rgba(0,0,0,.05); transition: transform .3s; }
+    .service-card:hover { transform: translateY(-6px); }
+    .service-card img { height: 18rem; width: 100%; object-fit: cover; transition: transform .7s; }
+    .service-card:hover img { transform: scale(1.05); }
+    .service-body { padding: 1.5rem; }
+    .service-title { font-size: 1.2rem; font-weight: 600; }
+    .service-desc { margin-top: .75rem; font-size: .875rem; color: var(--zinc-600); line-height: 1.6; }
+    .service-link { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); }
+    .service-link svg { transition: transform .2s; }
+    .service-link:hover svg { transform: translateX(4px); }
+
+    /* WHY */
+    .why-grid { display: grid; gap: 2.5rem; align-items: center; }
+    @media(min-width:768px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+    .why-list { display: grid; gap: 1.25rem; }
+    .why-item { display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--zinc-200); background: rgba(255,255,255,.7); border-radius: 1rem; padding: 1.25rem; backdrop-filter: blur(8px); }
+    .why-item svg { flex-shrink: 0; margin-top: 2px; }
+
+    /* GALLERY */
+    .gallery-grid { margin-top: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; grid-auto-rows: 220px; }
+    @media(min-width:768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+    .gallery-item { overflow: hidden; border-radius: 1.8rem; }
+    .gallery-item img { height: 100%; width: 100%; object-fit: cover; transition: transform .7s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.big { grid-column: span 2; grid-row: span 2; }
+    .gallery-cta { margin-top: 2.5rem; text-align: center; }
+    .btn-outline { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--zinc-300); background: white; border-radius: 100px; padding: .75rem 1.5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); transition: transform .2s; }
+    .btn-outline:hover { transform: scale(1.02); }
+
+    /* BEFORE AFTER */
+    .ba-grid { margin-top: 3.5rem; display: grid; gap: 1.5rem; }
+    @media(min-width:768px) { .ba-grid { grid-template-columns: 1fr 1fr; } }
+    .ba-card { overflow: hidden; border-radius: 2rem; background: white; box-shadow: 0 20px 25px -5px rgba(0,0,0,.08); }
+    .ba-card img { height: 500px; width: 100%; object-fit: cover; }
+    .ba-body { padding: 1.5rem; }
+    .ba-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .25em; color: var(--zinc-500); }
+    .ba-card h3 { margin-top: .5rem; font-size: 1.4rem; font-weight: 600; }
+
+    /* TESTIMONIALS */
+    .testi-grid { margin-top: 3.5rem; display: grid; gap: 2rem; }
+    @media(min-width:768px) { .testi-grid { grid-template-columns: repeat(3, 1fr); } }
+    .testi-card { border-radius: 2rem; border: 1px solid var(--zinc-200); background: white; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,.05); }
+    .stars { display: flex; gap: .25rem; margin-bottom: 1rem; }
+    .testi-text { color: var(--zinc-700); line-height: 1.7; }
+    .testi-name { margin-top: 1.5rem; font-weight: 500; }
+
+    /* CTA SECTION */
+    .cta-box { overflow: hidden; border-radius: 2.5rem; background: var(--zinc-900); padding: 4rem 2rem; text-align: center; color: white; box-shadow: 0 25px 50px -12px rgba(0,0,0,.25); max-width: 900px; margin: 0 auto; }
+    @media(min-width:768px) { .cta-box { padding: 4rem; } }
+    .cta-eye { font-size: .7rem; text-transform: uppercase; letter-spacing: .28em; color: rgba(255,255,255,.6); }
+    .cta-box h2 { margin-top: 1rem; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; letter-spacing: -.02em; }
+    .cta-box p { margin: 1.25rem auto 0; max-width: 42rem; color: rgba(255,255,255,.75); font-size: 1.1rem; line-height: 1.7; }
+
+    /* FAQ */
+    .faq-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .faq-item { border-radius: 1.6rem; border: 1px solid var(--zinc-200); background: white; padding: 1.5rem; }
+    .faq-q { font-size: 1.1rem; font-weight: 600; }
+    .faq-a { margin-top: .75rem; color: var(--zinc-600); line-height: 1.7; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; gap: 2.5rem; align-items: start; }
+    @media(min-width:768px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-card { border-radius: 2rem; border: 1px solid var(--zinc-200); background: white; padding: 2rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,.05); }
+    .contact-row { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-row + .contact-row { margin-top: 1.5rem; }
+    .contact-row p.label { font-weight: 500; }
+    .contact-row p.value { color: var(--zinc-600); margin-top: .125rem; }
+    .contact-btns { margin-top: 1.5rem; padding-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-dark { display: inline-flex; align-items: center; gap: .5rem; background: var(--zinc-900); color: white; border-radius: 100px; padding: .75rem 1.5rem; font-size: .875rem; font-weight: 500; outline: 2px solid rgba(255,255,255,.25); outline-offset: 2px; transition: background .2s; }
+    .btn-dark:hover { background: var(--zinc-800); }
+    .btn-border { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid var(--zinc-300); border-radius: 100px; padding: .75rem 1.5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); transition: border-color .2s; }
+    .btn-border:hover { border-color: var(--zinc-500); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--zinc-200); background: rgba(255,255,255,.7); }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    @media(min-width:768px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
+    .footer-brand p:first-child { font-size: 1.1rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+    .footer-brand p:last-child { margin-top: .5rem; font-size: .875rem; color: var(--zinc-600); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .875rem; color: var(--zinc-600); }
+    .footer-links a:hover { color: var(--zinc-900); }
+
+    /* ICONS */
+    .icon { width: 18px; height: 18px; flex-shrink: 0; }
+    .icon-sm { width: 20px; height: 20px; flex-shrink: 0; }
+
+    @media(prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } .fade-up { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora%20%2F%20consultar%20por%20un%20servicio." target="_blank" rel="noreferrer" class="fab">
+  <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.527 5.854L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.727.978.995-3.632-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+  Agenda tu hora
+</a>
+
+<!-- NAVBAR -->
+<header>
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">Assistudio</a>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#testimonios">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="nav-cta">Reservar</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" style="padding:0;">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div style="max-width:48rem;">
+      <h1 class="hero-h1">
+        Belleza, estilo y confianza
+        <span>en cada detalle</span>
+      </h1>
+      <p class="hero-p">En <strong>Assistudio</strong> realzamos tu esencia con una experiencia beauty moderna, femenina y premium.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="btn-wa">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-ig">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE ASSISTUDIO -->
+<section>
+  <div class="container about-grid">
+    <div class="fade-up">
+      <p class="eyebrow">Sobre Assistudio</p>
+      <div class="about-text" style="margin-top:1rem;">
+        <p>Soy <strong>Pamela Assis</strong>, Estilista Profesional titulada de AIEP con más de 10 años de trayectoria perfeccionando mi técnica.</p>
+        <p>Mi carrera se ha construido sobre la base del aprendizaje constante, especializándome junto a grandes referentes del estilismo en Chile y el extranjero. Mi enfoque combina la precisión técnica con una visión personalizada para cada clienta, garantizando resultados que no solo se ven bien, sino que cuidan la salud de tu cabello.</p>
+        <p class="tagline">Experiencia, técnica y pasión en cada servicio.</p>
+      </div>
+    </div>
+    <div class="about-img-wrap fade-up">
+      <img class="about-img" src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1400&auto=format&fit=crop" alt="Assistudio beauty" />
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="bg-white60">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:48rem; margin:0 auto;">
+      <p class="eyebrow">Servicios</p>
+      <h2 class="section-title">Cuidado, estilo y resultados con sello premium.</h2>
+      <p class="section-sub">Cada servicio está pensado para realzar tu belleza natural con productos y técnicas de primer nivel.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1200&auto=format&fit=crop" alt="Babylights & Balayage" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Babylights & Balayage</h3>
+          <p class="service-desc">Iluminación natural y dimensión con técnicas de color a mano alzada. Disponible para melena, media espalda, cabello largo y extra largo.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Babylights%20%26%20Balayage." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1200&auto=format&fit=crop" alt="Color" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Color</h3>
+          <p class="service-desc">Retoque de crecimiento, color global, baños de color e iluminación de raíz para un resultado vibrante y duradero.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Color." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=1200&auto=format&fit=crop" alt="Cortes" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Cortes</h3>
+          <p class="service-desc">Corte personalizado para cabello liso, ondulado o rizado. Forma y movimiento con estilo.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Cortes." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop" alt="Olaplex" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Olaplex Paso 1 y 2</h3>
+          <p class="service-desc">Tratamiento reconstructor profesional que repara desde el interior. Para todo tipo de largo.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Olaplex." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop" alt="Masaje y Tratamientos" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Masaje & Tratamientos</h3>
+          <p class="service-desc">Plex, Magic Rouse, Esteem Repair y Botox capilar. Cuidado profundo para un cabello saludable.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Tratamientos." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1200&auto=format&fit=crop" alt="Tratamientos de Lujo" /></div>
+        <div class="service-body">
+          <h3 class="service-title">Tratamientos de Lujo</h3>
+          <p class="service-desc">Olaplex 4 en 1, Monocanal hidratante, Monocanal gloss, Olaprotein y tratamiento único Olaplex. Cabello soñado.</p>
+          <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Tratamientos%20de%20Lujo." target="_blank" class="service-link">
+            Consultar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section>
+  <div class="container why-grid">
+    <div class="fade-up">
+      <p class="eyebrow">Por qué elegirnos</p>
+      <h2 class="section-title">Un espacio pensado para que te sientas increíble.</h2>
+      <p class="section-sub">Diseño, detalle, atención y una experiencia cuidada para que cada visita se sienta especial.</p>
+    </div>
+    <div class="why-list fade-up">
+      <div class="why-item">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Atención personalizada y cercana</p>
+      </div>
+      <div class="why-item">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Estética femenina, moderna y cuidada</p>
+      </div>
+      <div class="why-item">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Resultados visualmente impecables</p>
+      </div>
+      <div class="why-item">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Experiencia premium enfocada en detalle</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria" class="bg-white60">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:48rem; margin:0 auto;">
+      <p class="eyebrow">Galería</p>
+      <h2 class="section-title">Inspiración visual con esencia Instagram.</h2>
+      <p class="section-sub">Resultados reales que hablan por sí solos. Síguenos en @assistudio para más inspiración.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item big fade-up"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200&auto=format&fit=crop" alt="Galería 1" /></div>
+      <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop" alt="Galería 2" /></div>
+      <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1614174486480-9f3a7e5a5fcf?q=80&w=1200&auto=format&fit=crop" alt="Galería 3" /></div>
+      <div class="gallery-item big fade-up"><img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?q=80&w=1200&auto=format&fit=crop" alt="Galería 4" /></div>
+      <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=1200&auto=format&fit=crop" alt="Galería 5" /></div>
+      <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160?q=80&w=1200&auto=format&fit=crop" alt="Galería 6" /></div>
+    </div>
+    <div class="gallery-cta">
+      <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-outline">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        Ver más en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES / DESPUÉS -->
+<section>
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:48rem; margin:0 auto;">
+      <p class="eyebrow">Resultados</p>
+      <h2 class="section-title">Transformación que se nota.</h2>
+      <p class="section-sub">El proceso completo: desde el diagnóstico hasta un resultado que te hará brillar.</p>
+    </div>
+    <div class="ba-grid fade-up">
+      <div class="ba-card">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1400&auto=format&fit=crop" alt="Antes" />
+        <div class="ba-body">
+          <p class="ba-label">Antes</p>
+          <h3>Cabello natural · diagnóstico inicial</h3>
+        </div>
+      </div>
+      <div class="ba-card">
+        <img src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?q=80&w=1400&auto=format&fit=crop" alt="Después" />
+        <div class="ba-body">
+          <p class="ba-label">Después</p>
+          <h3>Babylights & color · resultado soñado</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="bg-white60">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:48rem; margin:0 auto;">
+      <p class="eyebrow">Opiniones</p>
+      <h2 class="section-title">Lo que dicen quienes ya vivieron la experiencia.</h2>
+      <p class="section-sub">La confianza de nuestras clientas es nuestro mejor resultado.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"La atención fue hermosa y el resultado superó mis expectativas. Todo se siente premium."</p>
+        <p class="testi-name">Camila</p>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Mi lugar favorito. Me encantó el detalle, la dedicación y cómo quedó mi look."</p>
+        <p class="testi-name">Valentina</p>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Se nota el cuidado en cada detalle. Volvería mil veces."</p>
+        <p class="testi-name">Fernanda</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-box fade-up">
+      <p class="cta-eye">Reserva tu hora</p>
+      <h2>Vive la experiencia Assistudio</h2>
+      <p>Agenda tu próxima cita y descubre una experiencia de belleza pensada para que te sientas segura, cuidada y espectacular.</p>
+      <div class="cta-buttons center" style="margin-top:2rem;">
+        <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="btn-wa">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-ig">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-white60">
+  <div class="container" style="max-width:900px;">
+    <div class="fade-up" style="text-align:center;">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <p class="section-sub">Información rápida para resolver dudas antes de reservar.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up">
+        <h3 class="faq-q">¿Cómo puedo reservar una hora?</h3>
+        <p class="faq-a">Puedes reservar directamente por WhatsApp o escribirnos al Instagram oficial @assistudio.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <h3 class="faq-q">¿Puedo consultar por disponibilidad?</h3>
+        <p class="faq-a">Sí, puedes escribirnos y te ayudaremos a encontrar el horario ideal.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <h3 class="faq-q">¿Puedo pedir información de servicios antes de reservar?</h3>
+        <p class="faq-a">Claro. Podemos orientarte según el resultado que buscas y recomendarte la mejor opción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container contact-grid">
+    <div class="fade-up">
+      <p class="eyebrow">Contacto</p>
+      <h2 class="section-title">Conversemos y agenda tu próxima cita.</h2>
+      <p class="section-sub">Encuéntranos en Paine. Reservas con hora previa por WhatsApp o Instagram.</p>
+    </div>
+    <div class="contact-card fade-up">
+      <div class="contact-row">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="label">Ubicación</p>
+          <p class="value">Victoria González 135, Paine</p>
+        </div>
+      </div>
+      <div class="contact-row">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <p class="label">Horario</p>
+          <p class="value">Lunes a Sábado · Atención con reserva previa según agenda</p>
+        </div>
+      </div>
+      <div class="contact-row">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.63a16 16 0 006.29 6.29l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <div>
+          <p class="label">Contacto</p>
+          <p class="value">+56 9 4221 2182</p>
+        </div>
+      </div>
+      <div class="contact-btns">
+        <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="btn-dark">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-border">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          Ir a Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p>Assistudio</p>
+      <p>Belleza con detalle, estilo y esencia.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#testimonios">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
