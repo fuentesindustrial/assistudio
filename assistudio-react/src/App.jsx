@@ -84,7 +84,7 @@ const services = [
   {
     title: "Tratamientos de Lujo",
     desc: "Olaplex 4 en 1, Monocanal hidratante, Monocanal gloss, Olaprotein y tratamiento único Olaplex. Cabello soñado.",
-    image: "/foto moroccanoil.png",
+    image: "/olaplex-productos.png",
   },
 ];
 
@@ -460,24 +460,22 @@ export default function App() {
             <div className="rounded-[2rem] bg-white shadow-xl overflow-hidden">
               <HairImage
                 src="/2.jpeg"
-                alt="Antes"
+                alt="Cabello natural"
                 className="h-[500px] w-full"
               />
               <div className="p-6">
-                <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">Antes</p>
-                <h3 className="mt-2 text-2xl font-semibold">Cabello natural · diagnóstico inicial</h3>
+                <h3 className="text-2xl font-semibold">Cabello natural · diagnóstico inicial</h3>
               </div>
             </div>
 
             <div className="rounded-[2rem] bg-white shadow-xl overflow-hidden">
               <HairImage
                 src="/foto trabajo salón.jpeg"
-                alt="Después"
+                alt="Resultado final"
                 className="h-[500px] w-full"
               />
               <div className="p-6">
-                <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">Después</p>
-                <h3 className="mt-2 text-2xl font-semibold">Babylights & color · resultado soñado</h3>
+                <h3 className="text-2xl font-semibold">Babylights & color · resultado soñado</h3>
               </div>
             </div>
           </motion.div>
