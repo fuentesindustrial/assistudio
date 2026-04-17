@@ -29,52 +29,68 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
   WHATSAPP_MESSAGE
 )}`;
 
+// Imágenes generadas por IA (pollinations.ai) — cabello sin rostros, sin maquillaje, sin uñas, sin hombres
+const AI = (prompt, seed, w = 1200, h = 800) =>
+  `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&nologo=true&seed=${seed}`;
+
 const services = [
   {
     title: "Babylights & Balayage",
     desc: "Iluminación natural y dimensión con técnicas de color a mano alzada. Disponible para melena, media espalda, cabello largo y extra largo.",
-    image:
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "close up blonde balayage babylights highlights long wavy hair from behind, back view, no face, hair only, professional salon photography, soft natural light",
+      101
+    ),
   },
   {
     title: "Color",
     desc: "Retoque de crecimiento, color global, baños de color e iluminación de raíz para un resultado vibrante y duradero.",
-    image:
-      "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "vibrant auburn copper colored long hair flowing from behind, back view, no face, hair only, freshly dyed salon color, elegant photography",
+      102
+    ),
   },
   {
     title: "Cortes",
     desc: "Corte personalizado para cabello liso, ondulado o rizado. Forma y movimiento con estilo.",
-    image:
-      "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "professional precision haircut on long brown female hair from behind with scissors, back view, no face, hair only, elegant salon",
+      103
+    ),
   },
   {
     title: "Olaplex Paso 1 y 2",
     desc: "Tratamiento reconstructor profesional que repara desde el interior. Para todo tipo de largo.",
-    image:
-      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "shiny healthy repaired long blonde hair treatment, back view, no face, hair only, glossy smooth texture, professional salon",
+      104
+    ),
   },
   {
     title: "Masaje & Tratamientos",
     desc: "Plex, Magic Rouse, Esteem Repair y Botox capilar. Cuidado profundo para un cabello saludable.",
-    image:
-      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "hair mask treatment being applied to long dark female hair from behind, back view, no face, hair only, spa salon, cream mask",
+      105
+    ),
   },
   {
     title: "Tratamientos de Lujo",
     desc: "Olaplex 4 en 1, Monocanal hidratante, Monocanal gloss, Olaprotein y tratamiento único Olaplex. Cabello soñado.",
-    image:
-      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1200&auto=format&fit=crop",
+    image: AI(
+      "luxurious glossy silky long chocolate brown female hair from behind, back view, no face, hair only, premium salon, mirror shine",
+      106
+    ),
   },
 ];
 
 const gallery = [
-  "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1614174486480-9f3a7e5a5fcf?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1500840216050-6ffa99d75160?q=80&w=1200&auto=format&fit=crop",
+  AI("long wavy honey blonde female hair flowing from behind, back view, no face, hair only, salon aesthetic", 201),
+  AI("caramel balayage waves on long female hair from behind, back view, no face, hair only, elegant salon", 202),
+  AI("sleek elegant chignon updo hairstyle back view, no face, hair only, wedding bridal salon", 203),
+  AI("platinum blonde long straight silky female hair from behind, back view, no face, hair only, minimalist editorial", 204),
+  AI("auburn red long wavy female hair flowing from behind, back view, no face, hair only, warm lighting", 205),
+  AI("chocolate brunette glossy curly long female hair from behind, back view, no face, hair only, luxury salon", 206),
 ];
 
 const testimonials = [
@@ -213,7 +229,12 @@ export default function App() {
           className="absolute inset-0 bg-cover bg-center scale-105"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1800&auto=format&fit=crop')",
+              `url('${AI(
+                "elegant luxury hair salon interior with soft warm golden lighting, empty beauty studio, aesthetic minimalist, no people, professional photography",
+                301,
+                1800,
+                1200
+              )}')`,
             transform: "translateZ(0)",
           }}
         />
@@ -286,7 +307,12 @@ export default function App() {
           >
             <div className="absolute -inset-4 rounded-[2rem] bg-white/50 blur-2xl" />
             <img
-              src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1400&auto=format&fit=crop"
+              src={AI(
+                "female hairstylist hands holding and styling long healthy blonde hair from behind, back view, no face, hair only, elegant luxury salon, soft lighting",
+                302,
+                1400,
+                1600
+              )}
               alt="Assistudio beauty"
               className="relative h-[520px] w-full rounded-[2rem] object-cover shadow-2xl"
             />
@@ -441,7 +467,12 @@ export default function App() {
           >
             <div className="overflow-hidden rounded-[2rem] bg-white shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1400&auto=format&fit=crop"
+                src={AI(
+                  "dry damaged frizzy brown female hair from behind, back view, no face, hair only, before salon treatment, dull matte texture, split ends",
+                  401,
+                  1400,
+                  1400
+                )}
                 alt="Antes"
                 className="h-[500px] w-full object-cover"
               />
@@ -453,7 +484,12 @@ export default function App() {
 
             <div className="overflow-hidden rounded-[2rem] bg-white shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?q=80&w=1400&auto=format&fit=crop"
+                src={AI(
+                  "transformed shiny smooth glossy blonde balayage long female hair from behind, back view, no face, hair only, after salon treatment, healthy mirror shine",
+                  402,
+                  1400,
+                  1400
+                )}
                 alt="Después"
                 className="h-[500px] w-full object-cover"
               />
