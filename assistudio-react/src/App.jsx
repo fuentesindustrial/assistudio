@@ -464,7 +464,7 @@ export default function App() {
                 className="h-[500px] w-full"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-semibold">Cabello natural · diagnóstico inicial</h3>
+                <h3 className="text-2xl font-semibold">Morena Ilumina</h3>
               </div>
             </div>
 
@@ -475,7 +475,7 @@ export default function App() {
                 className="h-[500px] w-full"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-semibold">Babylights & color · resultado soñado</h3>
+                <h3 className="text-2xl font-semibold">Resultado soñado</h3>
               </div>
             </div>
           </motion.div>
