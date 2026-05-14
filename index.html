@@ -80,7 +80,7 @@
     @media(min-width:768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
     .about-img-wrap { position: relative; }
     .about-img-wrap::before { content:''; position:absolute; inset:-1rem; border-radius:2rem; background:rgba(255,255,255,.5); filter:blur(2rem); }
-    .about-img { position: relative; height: 520px; width: 100%; object-fit: cover; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.2); }
+    .about-img { position: relative; height: 520px; width: 100%; object-fit: cover; object-position: center 20%; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.2); }
     .about-text { display: flex; flex-direction: column; gap: 1.25rem; }
     .about-text p { font-size: 1rem; line-height: 1.75; color: var(--zinc-700); }
     .about-text p strong { color: var(--zinc-900); font-weight: 600; }
@@ -97,7 +97,10 @@
     .service-body { padding: 1.5rem; }
     .service-title { font-size: 1.2rem; font-weight: 600; }
     .service-desc { margin-top: .75rem; font-size: .875rem; color: var(--zinc-600); line-height: 1.6; }
-    .service-link { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); }
+    /* ── CAMBIO 1: precio ancla ── */
+    .service-price { margin-top: .9rem; padding-top: .75rem; border-top: 1px solid var(--zinc-100); font-size: .85rem; font-weight: 600; color: var(--zinc-800); }
+    .service-price span { font-weight: 400; color: var(--zinc-500); font-size: .78rem; }
+    .service-link { margin-top: 1rem; display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 500; color: var(--zinc-900); }
     .service-link svg { transition: transform .2s; }
     .service-link:hover svg { transform: translateX(4px); }
 
@@ -107,6 +110,10 @@
     .why-list { display: grid; gap: 1.25rem; }
     .why-item { display: flex; align-items: flex-start; gap: 1rem; border: 1px solid var(--zinc-200); background: rgba(255,255,255,.7); border-radius: 1rem; padding: 1.25rem; backdrop-filter: blur(8px); }
     .why-item svg { flex-shrink: 0; margin-top: 2px; }
+    /* ── CAMBIO 3: credenciales ── */
+    .why-item p { font-size: .95rem; line-height: 1.5; color: var(--zinc-800); }
+    .why-item p strong { display: block; font-weight: 600; color: var(--zinc-900); }
+    .why-item p em { display: block; margin-top: .2rem; font-style: normal; font-size: .82rem; color: var(--zinc-500); }
 
     /* GALLERY */
     .gallery-grid { margin-top: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; grid-auto-rows: 220px; }
@@ -213,13 +220,15 @@
       </h1>
       <p class="hero-p">En <strong>Assistudio</strong> realzamos tu esencia con una experiencia beauty moderna, femenina y premium.</p>
       <div class="cta-buttons">
+        <!-- ── CAMBIO 2: se eliminó el botón "Ver Instagram" del hero.
+             Solo queda el CTA principal. Las visitas no se van de la página. ── -->
         <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="btn-wa">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           Reservar por WhatsApp
         </a>
-        <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-ig">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-          Ver Instagram
+        <a href="#servicios" class="btn-ig">
+          Ver servicios
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
       </div>
     </div>
@@ -258,6 +267,7 @@
         <div class="service-body">
           <h3 class="service-title">Babylights & Balayage</h3>
           <p class="service-desc">Iluminación natural y dimensión con técnicas de color a mano alzada. Disponible para melena, media espalda, cabello largo y extra largo.</p>
+          <p class="service-price">desde $100.000 <span>· según largo</span></p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Babylights%20%26%20Balayage." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -270,6 +280,7 @@
         <div class="service-body">
           <h3 class="service-title">Color</h3>
           <p class="service-desc">Retoque de crecimiento, color global, baños de color e iluminación de raíz para un resultado vibrante y duradero.</p>
+          <p class="service-price">desde $28.000 <span>· según servicio</span></p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Color." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -282,6 +293,7 @@
         <div class="service-body">
           <h3 class="service-title">Cortes</h3>
           <p class="service-desc">Corte personalizado para cabello liso, ondulado o rizado. Forma y movimiento con estilo.</p>
+          <p class="service-price">desde $15.000</p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Cortes." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -294,6 +306,7 @@
         <div class="service-body">
           <h3 class="service-title">Olaplex Paso 1 y 2</h3>
           <p class="service-desc">Tratamiento reconstructor profesional que repara desde el interior. Para todo tipo de largo.</p>
+          <p class="service-price">desde $28.000 <span>· según largo</span></p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Olaplex." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -306,6 +319,7 @@
         <div class="service-body">
           <h3 class="service-title">Masaje & Tratamientos</h3>
           <p class="service-desc">Plex, Magic Rouse, Esteem Repair y Botox capilar. Cuidado profundo para un cabello saludable.</p>
+          <p class="service-price">desde $28.000 <span>· según tratamiento</span></p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Tratamientos." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -318,6 +332,7 @@
         <div class="service-body">
           <h3 class="service-title">Tratamientos de Lujo</h3>
           <p class="service-desc">Olaplex 4 en 1, Monocanal hidratante, Monocanal gloss, Olaprotein y tratamiento único Olaplex. Cabello soñado.</p>
+          <p class="service-price">desde $28.000 <span>· según largo</span></p>
           <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20consultar%20por%20Tratamientos%20de%20Lujo." target="_blank" class="service-link">
             Consultar por WhatsApp
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -334,25 +349,38 @@
   <div class="container why-grid">
     <div class="fade-up">
       <p class="eyebrow">Por qué elegirnos</p>
-      <h2 class="section-title">Un espacio pensado para que te sientas increíble.</h2>
-      <p class="section-sub">Diseño, detalle, atención y una experiencia cuidada para que cada visita se sienta especial.</p>
+      <h2 class="section-title">Credenciales que respaldan cada resultado.</h2>
+      <p class="section-sub">No solo lo decimos — lo demostramos con formación, técnica y años de práctica real.</p>
     </div>
+    <!-- ── CAMBIO 3: se reemplazaron las 4 frases vacías por credenciales específicas ── -->
     <div class="why-list fade-up">
       <div class="why-item">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <p>Atención personalizada y cercana</p>
+        <p>
+          <strong>+10 años de trayectoria</strong>
+          <em>Estilista Profesional titulada de AIEP · Formación continua en Chile y el extranjero</em>
+        </p>
       </div>
       <div class="why-item">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <p>Estética femenina, moderna y cuidada</p>
+        <p>
+          <strong>Especialista en técnicas a mano alzada</strong>
+          <em>Babylights y Balayage con resultados naturales y duraderos</em>
+        </p>
       </div>
       <div class="why-item">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <p>Resultados visualmente impecables</p>
+        <p>
+          <strong>Tratamientos Olaplex profesionales</strong>
+          <em>Reparación real desde el interior · Productos certificados</em>
+        </p>
       </div>
       <div class="why-item">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <p>Experiencia premium enfocada en detalle</p>
+        <p>
+          <strong>Atención individual · Sin turnos compartidos</strong>
+          <em>Tu cita es solo tuya — tiempo y dedicación completa</em>
+        </p>
       </div>
     </div>
   </div>
@@ -363,8 +391,8 @@
   <div class="container">
     <div class="fade-up" style="text-align:center; max-width:48rem; margin:0 auto;">
       <p class="eyebrow">Galería</p>
-      <h2 class="section-title">Inspiración visual con esencia Instagram.</h2>
-      <p class="section-sub">Resultados reales que hablan por sí solos. Síguenos en @assistudio para más inspiración.</p>
+      <h2 class="section-title">Resultados reales. Sin filtros.</h2>
+      <p class="section-sub">Trabajos de clientas reales de Assistudio. Seguinos en @assistudio para más.</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item big fade-up"><img src="https://raw.githubusercontent.com/fuentesindustrial/assistudio/feature/actualizacion-servicios/assistudio-react/public/1.jpeg" alt="Galería 1" /></div>
@@ -374,6 +402,7 @@
       <div class="gallery-item fade-up"><img src="https://raw.githubusercontent.com/fuentesindustrial/assistudio/feature/actualizacion-servicios/assistudio-react/public/9.jpeg" alt="Galería 5" /></div>
       <div class="gallery-item fade-up"><img src="https://raw.githubusercontent.com/fuentesindustrial/assistudio/feature/actualizacion-servicios/assistudio-react/public/10.jpeg" alt="Galería 6" /></div>
     </div>
+    <!-- La galería sí puede tener un link a Instagram — tiene sentido contextual acá -->
     <div class="gallery-cta">
       <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-outline">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
@@ -419,7 +448,7 @@
     <div class="testi-grid">
       <div class="testi-card fade-up">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"Tremendo trabajo el de la Pame siempre, confío 100% en ella. Siempre logra lo que quiero y me mantiene el pelo muy sano con tremendos productos que utiliza. Además de ser una seca  es lo más amorosa que existe, se me pasa volando el tiempo con ella 🩷 admiro su trabajo y siempre la recomiendo.."</p>
+        <p class="testi-text">"Tremendo trabajo el de la Pame siempre, confío 100% en ella. Siempre logra lo que quiero y me mantiene el pelo muy sano con tremendos productos que utiliza. Además de ser una seca es lo más amorosa que existe, se me pasa volando el tiempo con ella 🩷 admiro su trabajo y siempre la recomiendo.."</p>
         <p class="testi-name">Romina C.</p>
       </div>
       <div class="testi-card fade-up">
@@ -429,7 +458,7 @@
       </div>
       <div class="testi-card fade-up">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"Pame ,eres una seca en tu trabajo ,la mejorrr, 👏👏🥰 un abrazito, pronto iré a verte..🤗🤗."</p>
+        <p class="testi-text">"Pame, eres una seca en tu trabajo, la mejorrr 👏👏🥰 un abrazito, pronto iré a verte..🤗🤗."</p>
         <p class="testi-name">Patricia A.</p>
       </div>
     </div>
@@ -444,13 +473,11 @@
       <h2>Vive la experiencia Assistudio</h2>
       <p>Agenda tu próxima cita y descubre una experiencia de belleza pensada para que te sientas segura, cuidada y espectacular.</p>
       <div class="cta-buttons center" style="margin-top:2rem;">
+        <!-- ── CAMBIO 2: se eliminó el botón "Ver Instagram" de esta sección.
+             El CTA de cierre debe llevar a un solo lugar: WhatsApp. ── -->
         <a href="https://wa.me/56942212182?text=Hola%20Assistudio%20%F0%9F%92%95%20Quiero%20reservar%20una%20hora." target="_blank" rel="noreferrer" class="btn-wa">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           Reservar por WhatsApp
-        </a>
-        <a href="https://www.instagram.com/assistudio" target="_blank" rel="noreferrer" class="btn-ig">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-          Ver Instagram
         </a>
       </div>
     </div>
@@ -463,20 +490,29 @@
     <div class="fade-up" style="text-align:center;">
       <p class="eyebrow">FAQ</p>
       <h2 class="section-title">Preguntas frecuentes</h2>
-      <p class="section-sub">Información rápida para resolver dudas antes de reservar.</p>
+      <p class="section-sub">Todo lo que necesitás saber antes de reservar.</p>
     </div>
+    <!-- ── BONUS: se agregaron preguntas útiles que resuelven objeciones reales ── -->
     <div class="faq-list">
       <div class="faq-item fade-up">
+        <h3 class="faq-q">¿Cuánto cuesta un Balayage o Babylights?</h3>
+        <p class="faq-a">El precio varía según el largo del cabello y la técnica a aplicar. Escríbenos por WhatsApp con una foto de tu cabello y te enviamos un presupuesto sin compromiso.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <h3 class="faq-q">¿Cuánto tiempo dura la cita?</h3>
+        <p class="faq-a">Depende del servicio: un corte puede tomar 45 minutos, mientras que un Balayage completo puede durar entre 3 y 5 horas. Al agendar te avisamos el tiempo estimado para que organices tu día.</p>
+      </div>
+      <div class="faq-item fade-up">
         <h3 class="faq-q">¿Cómo puedo reservar una hora?</h3>
-        <p class="faq-a">Puedes reservar directamente por WhatsApp o escribirnos al Instagram oficial @assistudio.</p>
+        <p class="faq-a">Directamente por WhatsApp o escribiéndonos al Instagram oficial @assistudio. La atención es con reserva previa.</p>
       </div>
       <div class="faq-item fade-up">
-        <h3 class="faq-q">¿Puedo consultar por disponibilidad?</h3>
-        <p class="faq-a">Sí, puedes escribirnos y te ayudaremos a encontrar el horario ideal.</p>
+        <h3 class="faq-q">¿Qué pasa si necesito cancelar o cambiar mi hora?</h3>
+        <p class="faq-a">Avisanos con anticipación por WhatsApp y buscamos juntas el mejor horario alternativo. Entendemos que los imprevistos pasan.</p>
       </div>
       <div class="faq-item fade-up">
-        <h3 class="faq-q">¿Puedo pedir información de servicios antes de reservar?</h3>
-        <p class="faq-a">Claro. Podemos orientarte según el resultado que buscas y recomendarte la mejor opción.</p>
+        <h3 class="faq-q">¿Puedo llevar una foto de referencia del resultado que quiero?</h3>
+        <p class="faq-a">¡Claro que sí! Es muy recomendable. Nos ayuda a entender exactamente el resultado que buscás y a orientarte sobre qué es posible lograr con tu tipo de cabello.</p>
       </div>
     </div>
   </div>
