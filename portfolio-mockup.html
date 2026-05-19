@@ -50,18 +50,19 @@
 
     /* ─── GLOW ORBS ─────────────────────────── */
     .orb {
-      position: fixed; border-radius: 50%; filter: blur(80px);
+      position: fixed; border-radius: 50%; filter: blur(90px);
       pointer-events: none; z-index: 0;
+      will-change: transform;
     }
     .orb-1 {
       width: 600px; height: 600px;
       top: -200px; right: -150px;
-      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,200,255,0.10) 0%, transparent 70%);
     }
     .orb-2 {
       width: 500px; height: 500px;
       bottom: 20%; left: -200px;
-      background: radial-gradient(circle, rgba(30,80,160,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,80,180,0.12) 0%, transparent 70%);
     }
 
     /* ─── NAV ───────────────────────────────── */
@@ -230,6 +231,21 @@
       letter-spacing: 0.08em; text-transform: uppercase;
     }
 
+    /* Scan-line */
+    #hero::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,200,255,0.45), transparent);
+      animation: scanline 5s linear infinite;
+      pointer-events: none; z-index: 3;
+      top: 0;
+    }
+    @keyframes scanline {
+      0%   { top: 0%;   opacity: 1; }
+      90%  { opacity: 0.3; }
+      100% { top: 100%; opacity: 0; }
+    }
+
     /* ─── SECTIONS ──────────────────────────── */
     section { padding: 6rem 2rem; position: relative; z-index: 1; }
     .container { max-width: 960px; margin: 0 auto; }
@@ -238,10 +254,12 @@
       display: flex; align-items: center; gap: 10px;
       font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.18em; color: var(--cyan); margin-bottom: 1rem;
+      font-family: 'Share Tech Mono', monospace;
     }
     .eyebrow::before {
-      content: ''; display: block;
-      width: 28px; height: 1px; background: var(--cyan);
+      content: '//'; color: rgba(0,200,255,0.4);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
     }
 
     .section-title {
@@ -270,6 +288,7 @@
       padding: 5px 13px; border-radius: 99px;
       border: 1px solid var(--border-cyan);
       background: var(--cyan-dim); color: var(--cyan-light);
+      font-family: 'Share Tech Mono', monospace;
     }
 
     .kpi-grid { display: grid; gap: 1rem; }
@@ -286,8 +305,9 @@
     }
     .kpi-card:hover { border-color: var(--border-cyan); }
     .kpi-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; font-weight: 700; color: var(--cyan); line-height: 1;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 2.2rem; font-weight: 400; color: var(--cyan); line-height: 1;
+      text-shadow: 0 0 10px rgba(0,200,255,0.35);
     }
     .kpi-label { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
 
@@ -328,6 +348,7 @@
       letter-spacing: 0.1em; color: var(--cyan);
       background: var(--cyan-dim); border: 1px solid var(--border-cyan);
       padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+      font-family: 'Share Tech Mono', monospace;
     }
     .tl-company { font-size: 0.85rem; color: var(--cyan-light); margin-bottom: 0.75rem; font-weight: 500; }
     .tl-list { padding-left: 1.1rem; }
@@ -355,8 +376,9 @@
     .edu-inst { font-size: 0.78rem; color: var(--cyan-light); margin-top: 2px; }
     .edu-year {
       font-size: 0.72rem; font-weight: 600; color: var(--muted);
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      background: rgba(0,200,255,0.04); border: 1px solid var(--border);
       padding: 4px 10px; border-radius: 99px; white-space: nowrap;
+      font-family: 'Share Tech Mono', monospace;
     }
 
     /* ─── SKILLS ────────────────────────────── */
@@ -369,6 +391,7 @@
       font-size: 0.72rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.15em;
       color: var(--muted); margin-bottom: 1.25rem;
+      font-family: 'Share Tech Mono', monospace;
     }
 
     .skill-row { margin-bottom: 1.1rem; }
@@ -376,9 +399,12 @@
       display: flex; justify-content: space-between;
       font-size: 0.84rem; font-weight: 500; margin-bottom: 7px;
     }
-    .skill-pct { font-size: 0.72rem; color: var(--cyan); font-weight: 600; }
+    .skill-pct {
+      font-size: 0.72rem; color: var(--cyan); font-weight: 600;
+      font-family: 'Share Tech Mono', monospace;
+    }
     .skill-track {
-      height: 4px; background: rgba(255,255,255,0.07);
+      height: 4px; background: rgba(0,200,255,0.08);
       border-radius: 99px; overflow: hidden;
     }
     .skill-fill {
@@ -416,8 +442,15 @@
       text-align: center;
       transition: border-color .3s, transform .3s;
     }
-    .str-card:hover { border-color: var(--border-cyan); transform: translateY(-4px); }
-    .str-icon { font-size: 1.75rem; margin-bottom: 0.6rem; display: block; }
+    .str-card:hover {
+      border-color: var(--border-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,200,255,0.1);
+    }
+    .str-icon {
+      font-size: 1.75rem; margin-bottom: 0.6rem; display: block;
+      filter: drop-shadow(0 0 6px rgba(0,200,255,0.3));
+    }
     .str-name { font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.3; }
 
     /* ─── CONTACT ───────────────────────────── */
@@ -431,7 +464,7 @@
     .contact-wrap::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at top, rgba(201,168,76,0.06), transparent 60%);
+      background: radial-gradient(ellipse at top, rgba(0,200,255,0.05), transparent 60%);
       pointer-events: none;
     }
     .contact-title {
@@ -443,20 +476,23 @@
     .contact-items { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
     .contact-link {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      background: rgba(0,200,255,0.04); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 11px 20px;
       text-decoration: none; color: var(--text); font-size: 0.85rem;
       transition: border-color .2s, background .2s;
+      font-family: 'Share Tech Mono', monospace;
     }
     .contact-link:hover { border-color: var(--border-cyan); background: var(--cyan-dim); }
     .contact-icon { font-size: 1rem; }
 
     /* ─── FOOTER ────────────────────────────── */
     footer {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-cyan);
       padding: 2rem;
       text-align: center; color: var(--muted-2); font-size: 0.78rem;
       position: relative; z-index: 1;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0.06em;
     }
     footer span { color: var(--muted); }
 
@@ -472,7 +508,7 @@
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .skills-layout { grid-template-columns: 1fr; }
       .hero-stats { flex-direction: column; border-radius: var(--radius); }
-      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border-cyan); }
       .stat-item:last-child { border-bottom: none; }
       .nav-links a { display: none; }
       .nav-links a.lang-container { display: flex; }
@@ -512,11 +548,11 @@
       <span data-es="Disponible para nuevas oportunidades" data-en="Open to new opportunities">Disponible para nuevas oportunidades</span>
     </div>
 
-    <h1 class="hero-name">Felipe Fuentes Soto</h1>
+    <h1 class="hero-name">Felipe <span class="cyan">Fuentes</span> Soto</h1>
 
     <p class="hero-role">
       <strong data-es="Especialista en RRHH & Remuneraciones" data-en="HR & Payroll Specialist">Especialista en RRHH & Remuneraciones</strong>
-      &nbsp;·&nbsp;
+      <span style="color:rgba(0,200,255,0.3); margin: 0 0.5rem;">//</span>
       <span data-es="Ingeniero Civil Industrial" data-en="Civil Industrial Engineer">Ingeniero Civil Industrial</span>
     </p>
 
@@ -873,6 +909,37 @@
     el.querySelectorAll('.skill-fill').forEach(b => b.style.width = '0');
     observer.observe(el);
   });
+
+  /* ─── PARALLAX ─── */
+  (function() {
+    const layers = [
+      { el: document.querySelector('.orb-1'),     speed: 0.12 },
+      { el: document.querySelector('.orb-2'),     speed: 0.18 },
+      { el: document.querySelector('.hero-pill'), speed: 0.28 },
+      { el: document.querySelector('.hero-stats'),speed: 0.45 },
+    ].filter(l => l.el);
+
+    const hero = document.getElementById('hero');
+    let ticking = false;
+
+    function applyParallax() {
+      const scrollY = window.scrollY;
+      const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
+      if (scrollY > heroBottom) { ticking = false; return; }
+
+      layers.forEach(({ el, speed }) => {
+        el.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(applyParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>
