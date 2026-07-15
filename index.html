@@ -80,7 +80,8 @@
     @media(min-width:768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
     .about-img-wrap { position: relative; }
     .about-img-wrap::before { content:''; position:absolute; inset:-1rem; border-radius:2rem; background:rgba(255,255,255,.5); filter:blur(2rem); }
-    .about-img { position: relative; height: 520px; width: 100%; object-fit: cover; object-position: center top; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.2); }
+    .about-img { position: relative; height: 520px; width: 100%; object-fit: cover; object-position: right top; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,.2); }
+    @media(min-width:768px) { .about-img { object-position: center top; } }
     .about-text { display: flex; flex-direction: column; gap: 1.25rem; }
     .about-text p { font-size: 1rem; line-height: 1.75; color: var(--zinc-700); }
     .about-text p strong { color: var(--zinc-900); font-weight: 600; }
